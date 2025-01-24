@@ -6,3 +6,6 @@ run2:
 
 run3:
 	python ./main3.py
+
+data:
+	python ./data.py
