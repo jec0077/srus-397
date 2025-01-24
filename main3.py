@@ -29,7 +29,7 @@ while cap.isOpened():
         cv2.imshow("Webcam Feed", image)
 
         # Press 'q' to exit the loop and close the webcam feed
-        if cv2.waitKey(25) & 0xFF == ord('q'):
+        if cv2.waitKey(3) & 0xFF == ord('q'):
             break
     else:
         break

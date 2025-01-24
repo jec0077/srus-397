@@ -50,10 +50,12 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
     # Display the resulting frame
+    print("! Display Frame")
     cv2.imshow('Video', frame)
 
     # Exit the loop when 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
+        print("! Quit")
         break
 
 # Release the video capture and close all windows
