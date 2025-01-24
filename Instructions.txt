@@ -1,0 +1,10 @@
+# Running
+
+pip install -r requirements.txt
+
+# To run main1
+
+# To run main2
+
+# To run main3
+
