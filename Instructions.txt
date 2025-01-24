@@ -1,10 +1,14 @@
-# Running
+Before Running This Directory, Install all the required libraries using command:
+    `pip install -r .\requirements.txt`
 
-pip install -r requirements.txt
+If Necessary, Use Python Virtual Environment using command:
+    `.\venv\Scripts\activate`
 
-# To run main1
+To Exit Virtual Environment, use command:
+    `deactivate`
 
-# To run main2
-
-# To run main3
-
+If You Want to Commit Any Changes to the Main Branch
+    `git status`
+    `git add -a`
+    `git commit -m "message"`
+    `git push -u origin main`

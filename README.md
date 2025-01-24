@@ -1,3 +1,3 @@
-# SRUS
-"# ece-396-397-srus" 
-"# ece-396-397-srus" 
+# Smart Room Utilization System (SRUS)
+
+Aaron T, Joshua C, Shishir P, Toan N
