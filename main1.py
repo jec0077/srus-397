@@ -1,8 +1,11 @@
 """
 ---------------------------------------------------------
 Filename: main1.py
-Description: This script captures video from the default camera and detects faces in real-time using a Haar cascade classifier. The detected faces are highlighted with rectangles and the total number of detected faces is displayed on the screen.
-Author: Joshua Campbell <jcampb36@uic.edu>
+Description: This script captures video from the default camera
+    and detects faces in real-time using a Haar cascade classifier.
+    The detected faces are highlighted with rectangles and the total
+    number of detected faces is displayed on the screen.
+Author: Josh Campbell <jcampb36@uic.edu>
 Date Created: 2024-11-29
 Last Modified: 2025-01-24
 Version: 0.2
@@ -14,7 +17,7 @@ Dependencies:
 
 Usage:
     - Run the script from the command line with the path to a Haar cascade XML file:
-      python main1.py <haarcascade_file_path>
+        python main1.py <haarcascade_file_path>
     - The script will display the video feed from your webcam, with rectangles drawn around any detected faces. Press 'q' to quit.
 
 Example:
@@ -23,10 +26,13 @@ Example:
 ---------------------------------------------------------
 """
 
-
-
+# Import dependent libraries
 import cv2
 import sys
+
+# Import local libraries
+import data
+
 
 # Check if the user provided the Haar cascade file path
 if len(sys.argv) < 2:
@@ -71,15 +77,16 @@ while True:
     )
 
     # Draw a rectangle around the faces
-    num_of_persons = 1
+    num_of_persons = 0
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         num_of_persons += 1
 
     # Display the resulting frame
     # print("! Display Frame")
-    cv2.putText(frame, f'Total Persons Detected: {num_of_persons - 1}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+    cv2.putText(frame, f'Total Persons Detected: {num_of_persons}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
     # TODO: Configure Data module for num_of_persons
+    data.take_data_count(num_of_persons)
     cv2.imshow('Video', frame)
 
     # Exit the loop when 'q' is pressed
