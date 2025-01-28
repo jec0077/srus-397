@@ -88,7 +88,7 @@ while True:
 
     # Display the resulting frame
     # print("! Display Frame")
-    cv2.putText(frame, f'Total Persons Detected: {num_of_persons}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+    cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rmCap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
     # TODO: Configure Data module for num_of_persons
     data.take_data_count(num_of_persons, rmCap)
     cv2.imshow('Video', frame)
