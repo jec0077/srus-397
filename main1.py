@@ -18,7 +18,8 @@ Dependencies:
 Usage:
     - Run the script from the command line with the path to a Haar cascade XML file:
         python main1.py <haarcascade_file_path>
-    - The script will display the video feed from your webcam, with rectangles drawn around any detected faces. Press 'q' to quit.
+    - The script will display the video feed from your webcam, with rectangles
+        drawn around any detected faces. Press 'q' to quit.
 
 Example:
     - python main1.py haarcascade_frontalface_default.xml
@@ -32,6 +33,7 @@ import sys
 
 # Import local libraries
 import data
+import sensors
 
 
 # Check if the user provided the Haar cascade file path
