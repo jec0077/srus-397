@@ -27,11 +27,12 @@ filename = "stats.txt"
 def create_data_file():
     pass
 
-def take_data_count(count_var: int):
+def take_data_count(count_var: int, cap_var: int):
     """_summary_
 
     Args:
         count_var (int): _description_
     """
     # TODO: code
-    count_var -= 1
+    if count_var >= cap_var:
+        print("Room Capacity Met!")

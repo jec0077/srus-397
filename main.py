@@ -43,6 +43,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 cascPath = sys.argv[1]
+rmCap = sys.argv[2]
 
 # Load the Haar cascade file
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -89,7 +90,7 @@ while True:
     # print("! Display Frame")
     cv2.putText(frame, f'Total Persons Detected: {num_of_persons}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
     # TODO: Configure Data module for num_of_persons
-    data.take_data_count(num_of_persons)
+    data.take_data_count(num_of_persons, rmCap)
     cv2.imshow('Video', frame)
 
     # Exit the loop when 'q' is pressed
