@@ -1,28 +1,29 @@
 """
 ---------------------------------------------------------
-Filename: main1.py
+Filename: main.py
 Description: This script captures video from the default camera
     and detects faces in real-time using a Haar cascade classifier.
     The detected faces are highlighted with rectangles and the total
     number of detected faces is displayed on the screen.
-Author: Josh Campbell <jcampb36@uic.edu>
+Author: Josh Campbell <jcampb36@uic.edu>,
+        Aaron Tillery <atill4@uic.edu>
 Date Created: 2024-11-29
 Last Modified: 2025-01-28
 Version: 1.0
 Python Version: 3.11.1
 
 Dependencies:
-    - opencv-python (cv2)
+    - cv2 (opencv-python)
     - sys
 
 Usage:
     - Run the script from the command line with the path to a Haar cascade XML file:
-        python main1.py <haarcascade_file_path>
+        python main.py <haarcascade_file_path>
     - The script will display the video feed from your webcam, with rectangles
         drawn around any detected faces. Press 'q' to quit.
 
 Example:
-    - python main1.py haarcascade_frontalface_default.xml
+    - python main.py haarcascade_frontalface_default.xml
     - This will start the face detection with the specified Haar cascade classifier file.
 ---------------------------------------------------------
 """

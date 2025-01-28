@@ -2,7 +2,8 @@
 ---------------------------------------------------------
 Filename: data.py
 Description: This script <>
-Author: Josh Campbell <jcampb36@uic.edu>
+Author: Josh Campbell <jcampb36@uic.edu>,
+        Aaron Tillery <atill4@uic.edu>
 Date Created: 2025-01-23
 Last Modified: 2025-01-24
 Version: 0.1
