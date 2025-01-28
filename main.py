@@ -43,7 +43,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 cascPath = sys.argv[1]
-rmCap = sys.argv[2]
+rmCap = int(sys.argv[2])
 
 # Load the Haar cascade file
 faceCascade = cv2.CascadeClassifier(cascPath)
