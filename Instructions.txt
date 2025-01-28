@@ -1,13 +1,15 @@
 Before Running This Directory, Install all the required libraries
     `pip install -r .\requirements.txt`
 
+Download Python Virtual Environment
+    `python -m venv venv`
+
 If Necessary, use Python Virtual Environment
     `.\venv\Scripts\activate`
 
 To Run Python Files
-    `make run1`     # to run main1.py
-    `make run2`     # to run main2.py
-    `make run3`     # to run main3.py
+    `make run`      # to run main.py
+    `make data`     # to run data.py
 
 To Exit Python Virtual Environment
     `deactivate`
@@ -15,5 +17,5 @@ To Exit Python Virtual Environment
 If You Want to Commit Any Changes to the Main Branch
     `git status`
     `git add .`
-    `git commit -m "message"`
+    `git commit -m "<message>"`
     `git push -u origin main`

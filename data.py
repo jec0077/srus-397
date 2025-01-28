@@ -21,7 +21,7 @@ Example:
 # Import dependent libraries
 import time
 
-filename = "save.txt"
+filename = "stats.txt"
 
 def create_data_file():
     pass
