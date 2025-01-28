@@ -7,8 +7,8 @@ Description: This script captures video from the default camera
     number of detected faces is displayed on the screen.
 Author: Josh Campbell <jcampb36@uic.edu>
 Date Created: 2024-11-29
-Last Modified: 2025-01-24
-Version: 0.2
+Last Modified: 2025-01-28
+Version: 1.0
 Python Version: 3.11.1
 
 Dependencies:
