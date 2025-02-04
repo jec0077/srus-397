@@ -55,7 +55,7 @@ if faceCascade.empty():
 video_capture = cv2.VideoCapture(0)
 
 if not video_capture.isOpened():
-    print("Error: Could not open video capture...")
+    print("Error: Could not open video capture.")
     sys.exit(1)
 
 print("Press 'q' to quit the video stream.")
