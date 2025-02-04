@@ -8,7 +8,7 @@ Description: This script captures video from the default camera
 Author: Josh Campbell <jcampb36@uic.edu>,
         Aaron Tillery <atill4@uic.edu>
 Date Created: 2024-11-29
-Last Modified: 2025-01-28
+Last Modified: 2025-02-04
 Version: 1.0
 Python Version: 3.11.1
 
@@ -55,7 +55,7 @@ if faceCascade.empty():
 video_capture = cv2.VideoCapture(0)
 
 if not video_capture.isOpened():
-    print("Error: Could not open video capture.")
+    print("Error: Could not open video capture...")
     sys.exit(1)
 
 print("Press 'q' to quit the video stream.")
