@@ -21,5 +21,13 @@ Example:
 """
 # Import dependent libraries
 import data
+import random
 
-# TODO: code
+celsius = random.uniform(20.0,24.44) #Testing randomized numbers between 20 degree celsisus and 24.444 degree celsisus
+
+fahrenheit = (celsius * 9/5) + 32 #Converting the Celsisus numbers into Fahrenheit
+
+print(str(celsius )+ " degree Celsisus is equal to " + str(fahrenheit )+ " degree Fahrenheit.") #Testing print statment to see if ramdonized variables work
+
+
+
