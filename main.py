@@ -42,8 +42,9 @@ if len(sys.argv) < 2:
     print("Usage: python script.py <haarcascade_file_path>")
     sys.exit(1)
 
+filename = "stats.txt"
 cascPath = sys.argv[1]
-rmCap = int(sys.argv[2])
+rm_cap = int(sys.argv[2])
 
 # Load the Haar cascade file
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -59,6 +60,8 @@ if not video_capture.isOpened():
     sys.exit(1)
 
 print("Press 'q' to quit the video stream.")
+
+data.create_data_file(filename=filename)
 
 while True:
     # Capture frame-by-frame
@@ -87,10 +90,10 @@ while True:
         num_of_persons += 1
 
     # Display the resulting frame
-    # print("! Display Frame")
-    cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rmCap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+    cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rm_cap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+    
     # TODO: Configure Data module for num_of_persons
-    data.take_data_count(num_of_persons, rmCap)
+    
     cv2.imshow('Video', frame)
 
     # Exit the loop when 'q' is pressed

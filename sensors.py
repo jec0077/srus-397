@@ -5,7 +5,7 @@ Description: This script <>
 Author: Josh Campbell <jcampb36@uic.edu>,
         Aaron Tillery <atill4@uic.edu>
 Date Created: 2025-01-28
-Last Modified: 2025-02-05
+Last Modified: 2025-02-07
 Version: 0.1
 Python Version: 3.11.1
 
@@ -23,11 +23,20 @@ Example:
 import data
 import random
 
-celsius = random.uniform(20.0,24.44) #Testing randomized numbers between 20 degree celsisus and 24.444 degree celsisus
+class RoomInfo:
+    def __init__(self):
+        # Room Owner: str (e.g., "John Doe <jdoe@email.com>")
+        # Room Preferred Capacity Set: int
+        # Room Preferred Temperature Set: int
+        # Room Preferred Humility Set: int
+        pass
 
-fahrenheit = (celsius * 9/5) + 32 #Converting the Celsisus numbers into Fahrenheit
+# Testing randomized numbers between 20 degrees Celsius and 25 degrees Celsius
+celsius_var = random.uniform(20.0, 25.0)
 
-print(str(celsius )+ " degree Celsisus is equal to " + str(fahrenheit )+ " degree Fahrenheit.") #Testing print statment to see if ramdonized variables work
+# Converting the Celsius numbers into Fahrenheit
+fahrenheit_var = (celsius_var * 9 / 5) + 32
 
-
+# Testing print statement to see if randomized variables work
+print(f"{round(celsius_var, 2)} degree Celsius is equal to {round(fahrenheit_var, 2)} degree Fahrenheit.")
 
