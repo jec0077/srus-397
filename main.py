@@ -60,6 +60,7 @@ if not video_capture.isOpened():
     sys.exit(1)
 
 print("Press 'q' to quit the video stream.")
+print("! Starting Video Stream")
 
 data.create_data_file(filename=filename)
 

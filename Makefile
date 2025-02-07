@@ -3,3 +3,6 @@ run:
 
 data:
 	python ./data.py
+
+sensors:
+	python ./sensors.py
