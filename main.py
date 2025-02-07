@@ -10,7 +10,7 @@ Author: Josh Campbell <jcampb36@uic.edu>,
 Date Created: 2024-11-29
 Last Modified: 2025-02-04
 Version: 1.0
-Python Version: 3.11.1
+Python Version: 3.11
 
 Dependencies:
     - cv2 (opencv-python)
