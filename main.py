@@ -8,7 +8,7 @@ Description: This script captures video from the default camera
 Author: Josh Campbell <jcampb36@uic.edu>,
         Aaron Tillery <atill4@uic.edu>
 Date Created: 2024-11-29
-Last Modified: 2025-02-04
+Last Modified: 2025-02-10
 Version: 1.0
 Python Version: 3.11
 
@@ -31,6 +31,7 @@ Example:
 # Import dependent libraries
 import cv2
 import sys
+import datetime
 
 # Import local libraries
 import data
@@ -45,6 +46,9 @@ if len(sys.argv) < 2:
 filename = "stats.txt"
 cascPath = sys.argv[1]
 rm_cap = int(sys.argv[2])
+# TODO: add more cmd line params
+
+MyRoom = data.RoomInfo(capacity=rm_cap)
 
 # Load the Haar cascade file
 faceCascade = cv2.CascadeClassifier(cascPath)
