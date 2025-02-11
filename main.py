@@ -8,7 +8,7 @@ Description: This script captures video from the default camera
 Author: Josh Campbell <jcampb36@uic.edu>,
         Aaron Tillery <atill4@uic.edu>
 Date Created: 2024-11-29
-Last Modified: 2025-02-10
+Last Modified: 2025-02-11
 Version: 1.0
 Python Version: 3.11
 
