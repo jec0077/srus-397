@@ -67,6 +67,7 @@ print("Press 'q' to quit the video stream.")
 print("! Starting Video Stream")
 
 data.create_data_file(filename=filename)
+curr_max_in_rm = [0, 0, 0]
 
 while True:
     # Capture frame-by-frame
@@ -96,8 +97,7 @@ while True:
 
     # Display the resulting frame
     cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rm_cap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
-
-    curr_max_in_rm = (0, 0, 0)
+   
     if (num_of_persons > curr_max_in_rm[0]):
         MyRoom.rm_cap_met("stats.txt", num_of_persons)
         curr_max_in_rm[0] = num_of_persons
