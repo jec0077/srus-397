@@ -37,4 +37,3 @@ if __name__ == "__main__":
     data.create_data_file("stats.txt")
     MyRoom = data.RoomInfo("Josh Campbell <jcampb36@uic.edu>", 5, 60.0, 55.0) # see RoomInfo class in data.py
     print(f"MyRoom:\n{MyRoom}\n. . .")
-    MyRoom.temp_cond_met("stats.txt", fahrenheit_var)

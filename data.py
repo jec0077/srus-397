@@ -97,7 +97,7 @@ class RoomInfo:
                 _file.write(f"{now_time}\tRoom is over capacity ({cap_var} / {self.room_cap})\n")
                 _file.write("\t! Contacting Room Owner\n")
                 _file.write(". . . .\n")
-            time.sleep(3)
+            time.sleep(0.1)
             return True
         return False
 
@@ -114,10 +114,10 @@ class RoomInfo:
         if abs(temp_var - self.room_temp) > threshold:
             now_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(filename, "a") as _file:
-                _file.write(f"{now_time}\tRoom temperature out of range ({temp_var:2f}°F)\n")
+                _file.write(f"{now_time}\tRoom temperature out of range ({temp_var:.2f}°F)\n")
                 _file.write("\t! Contacting Room Owner\n")
                 _file.write(". . . .\n")
-            time.sleep(3)
+            time.sleep(0.1)
             return True
         return False
 
@@ -134,10 +134,10 @@ class RoomInfo:
         if abs(hum_var - self.room_hum) > threshold:
             now_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(filename, "a") as _file:
-                _file.write(f"{now_time}\tRoom humidity out of range ({hum_var:2f}%)\n")
+                _file.write(f"{now_time}\tRoom humidity out of range ({hum_var:.2f}%)\n")
                 _file.write("\t! Contacting Room Owner\n")
                 _file.write(". . . .\n")
-            time.sleep(3)
+            time.sleep(0.1)
             return True
         return False
     

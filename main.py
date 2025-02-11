@@ -96,7 +96,17 @@ while True:
 
     # Display the resulting frame
     cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rm_cap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
-    
+
+    curr_max_in_rm = (0, 0, 0)
+    if (num_of_persons > curr_max_in_rm[0]):
+        MyRoom.rm_cap_met("stats.txt", num_of_persons)
+        curr_max_in_rm[0] = num_of_persons
+    if (num_of_persons > curr_max_in_rm[1]):
+        MyRoom.rm_cap_met("stats.txt", num_of_persons)
+        curr_max_in_rm[1] = None
+    if (num_of_persons > curr_max_in_rm[2]):
+        MyRoom.rm_cap_met("stats.txt", num_of_persons)
+        curr_max_in_rm[2] = None
     # TODO: Configure Data module for num_of_persons
     
     cv2.imshow('Video', frame)
