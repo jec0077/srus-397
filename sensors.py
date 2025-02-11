@@ -21,13 +21,12 @@ Example:
 """
 # Import dependent libraries
 import data
-import random
 
-# Testing randomized numbers between 20 degrees Celsius and 25 degrees Celsius
-celsius_var = random.uniform(20.00, 25.00)
+# TODO: I2C bus GPIO pin configuration
 
-# Converting the Celsius numbers into Fahrenheit
-fahrenheit_var = (celsius_var * 9.00 / 5.00) + 32.00
+# Initialize of bus and sensor
+
+# While . . .
 
 if __name__ == "__main__":
     # Testing print statement to see if randomized variables work

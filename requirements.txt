@@ -3,4 +3,5 @@ imutils
 numpy
 virtualenv
 datetime
-time
+adafruit-circuitpython-am2320
+adafruit-circuitpython-busdevice
