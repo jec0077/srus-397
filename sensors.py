@@ -29,8 +29,9 @@ import data
 # While . . .
 
 if __name__ == "__main__":
-    # Testing print statement to see if randomized variables work
-    print(f"{round(celsius_var, 2)} degrees Celsius = {round(fahrenheit_var, 2)} degrees Fahrenheit. . .")
+    # TESTING
+    if True:
+        pass
     
     # File and Room testing
     data.create_data_file("stats.txt")
