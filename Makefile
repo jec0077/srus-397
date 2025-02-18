@@ -6,3 +6,6 @@ data:
 
 sensors:
 	python ./sensors.py
+
+temphum:
+	python ./TempHum.py
