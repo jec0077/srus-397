@@ -2,11 +2,9 @@ import time
 import board
 import busio
 import adafruit_am2320
-# import Adafruit_DHT
 
 # Initialize I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
-# dht = Adafruit_DHT.DHT22
 
 print("Scanning I2C bus...")
 while not i2c.try_lock():
@@ -17,7 +15,7 @@ print(f"Detected I2C devices: {devices}")
 i2c.unlock()
 
 # Manually wake up the sensor: Some sensors need extra time
-time.sleep(0.5)  # Give the sensor a full second to wake up
+time.sleep(1)  # Give the sensor a full second to wake up
 
 try:
     sensor = adafruit_am2320.AM2320(i2c)
@@ -40,3 +38,5 @@ while True:
         print(f"Error reading sensor data: {e}")
 
     time.sleep(2)  # Wait 2 seconds before next reading
+
+
