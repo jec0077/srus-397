@@ -1,6 +1,9 @@
 import cv2
 import sys
 from picamera2 import Picamera2
+# import adafruit_ads1x15
+
+# import AQsensor
 
 # Check if the user provided the Haar cascade file path
 if len(sys.argv) < 2:
@@ -58,7 +61,9 @@ while True:
 
     # Display the resulting frame
     cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rm_cap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
-
+    # cv2.putText(frame, f'CO2: {}', (70, 40), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+    # AQsensor.main()
+    
     if num_of_persons > curr_max_in_rm[0]:
         # MyRoom.rm_cap_met("stats.txt", num_of_persons) # add your room logic here.
         curr_max_in_rm[0] = num_of_persons
