@@ -2,9 +2,11 @@ import time
 import board
 import busio
 import adafruit_am2320
+# import Adafruit_DHT
 
 # Initialize I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
+# dht = Adafruit_DHT.DHT22
 
 try:
     sensor = adafruit_am2320.AM2320(i2c)

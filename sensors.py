@@ -28,12 +28,12 @@ import data
 
 # While . . .
 
-if __name__ == "__main__":
-    # TESTING
-    if True:
-        pass
+# if __name__ == "__main__":
+#     # TESTING
+#     if True:
+#         pass
     
-    # File and Room testing
-    data.create_data_file("stats.txt")
-    MyRoom = data.RoomInfo("Josh Campbell <jcampb36@uic.edu>", 5, 60.0, 55.0) # see RoomInfo class in data.py
-    print(f"MyRoom:\n{MyRoom}\n. . .")
+#     # File and Room testing
+#     data.create_data_file("stats.txt")
+#     MyRoom = data.RoomInfo("Josh Campbell <jcampb36@uic.edu>", 5, 60.0, 55.0) # see RoomInfo class in data.py
+#     print(f"MyRoom:\n{MyRoom}\n. . .")
