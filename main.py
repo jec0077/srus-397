@@ -1,54 +1,15 @@
-"""
----------------------------------------------------------
-Filename: main.py
-Description: This script captures video from the default camera
-    and detects faces in real-time using a Haar cascade classifier.
-    The detected faces are highlighted with rectangles and the total
-    number of detected faces is displayed on the screen.
-Author: Josh Campbell <jcampb36@uic.edu>,
-        Aaron Tillery <atill4@uic.edu>
-Date Created: 2024-11-29
-Last Modified: 2025-02-11
-Version: 1.0
-Python Version: 3.11
-
-Dependencies:
-    - cv2 (opencv-python)
-    - sys
-
-Usage:
-    - Run the script from the command line with the path to a Haar cascade XML file:
-        python main.py <haarcascade_file_path>
-    - The script will display the video feed from your webcam, with rectangles
-        drawn around any detected faces. Press 'q' to quit.
-
-Example:
-    - python main.py haarcascade_frontalface_default.xml
-    - This will start the face detection with the specified Haar cascade classifier file.
----------------------------------------------------------
-"""
-
-# Import dependent libraries
 import cv2
 import sys
-import datetime
-
-# Import local libraries
-import data
-import sensors
-
+from picamera2 import Picamera2
 
 # Check if the user provided the Haar cascade file path
 if len(sys.argv) < 2:
-    print("Usage: python script.py <haarcascade_file_path>")
+    print("Usage: python script.py <haarcascade_file_path> <room_capacity>")
     sys.exit(1)
 
 filename = "stats.txt"
 cascPath = sys.argv[1]
 rm_cap = int(sys.argv[2])
-# TODO: add more cmd line params
-
-MyRoom = data.RoomInfo(capacity=rm_cap)
 
 # Load the Haar cascade file
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -56,26 +17,26 @@ if faceCascade.empty():
     print(f"Error: Failed to load Haar cascade file from {cascPath}")
     sys.exit(1)
 
-# Start video capture
-video_capture = cv2.VideoCapture(0)
-
-if not video_capture.isOpened():
-    print("Error: Could not open video capture.")
-    sys.exit(1)
+# Initialize picamera2
+picam2 = Picamera2()
+picam2.preview_configuration.main.size = (640, 480)  # Adjust size as needed
+picam2.preview_configuration.main.format = "RGB888"
+picam2.preview_configuration.align()
+picam2.configure("preview")
+picam2.start()
 
 print("Press 'q' to quit the video stream.")
 print("! Starting Video Stream")
 
-data.create_data_file(filename=filename)
+# Create data file (assuming you have data.create_data_file)
+# data.create_data_file(filename=filename)
+
 curr_max_in_rm = [0, 0, 0]
+num_of_persons = 0 #initialize the num of persons.
 
 while True:
     # Capture frame-by-frame
-    ret, frame = video_capture.read()
-
-    if not ret:
-        print("Error: Failed to capture video frame.")
-        break
+    frame = picam2.capture_array()
 
     # Convert the frame to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -97,18 +58,17 @@ while True:
 
     # Display the resulting frame
     cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rm_cap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
-   
-    if (num_of_persons > curr_max_in_rm[0]):
-        MyRoom.rm_cap_met("stats.txt", num_of_persons)
+
+    if num_of_persons > curr_max_in_rm[0]:
+        # MyRoom.rm_cap_met("stats.txt", num_of_persons) # add your room logic here.
         curr_max_in_rm[0] = num_of_persons
-    if (num_of_persons > curr_max_in_rm[1]):
-        MyRoom.rm_cap_met("stats.txt", num_of_persons)
-        curr_max_in_rm[1] = None
-    if (num_of_persons > curr_max_in_rm[2]):
-        MyRoom.rm_cap_met("stats.txt", num_of_persons)
-        curr_max_in_rm[2] = None
-    # TODO: Configure Data module for num_of_persons
-    
+    if num_of_persons > curr_max_in_rm[1]:
+        # MyRoom.rm_cap_met("stats.txt", num_of_persons) # add your room logic here.
+        curr_max_in_rm[1] = num_of_persons
+    if num_of_persons > curr_max_in_rm[2]:
+        # MyRoom.rm_cap_met("stats.txt", num_of_persons) # add your room logic here.
+        curr_max_in_rm[2] = num_of_persons
+
     cv2.imshow('Video', frame)
 
     # Exit the loop when 'q' is pressed
@@ -116,6 +76,9 @@ while True:
         print("! Quit")
         break
 
-# Release the video capture and close all windows
-video_capture.release()
+# Release the picamera2 and close all windows
+picam2.stop()
+picam2.close()
 cv2.destroyAllWindows()
+ # cd /home/team33/code/srus-397/
+ # python main.py ./haarcascade_frontalface_default.xml 2

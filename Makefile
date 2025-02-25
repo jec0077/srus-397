@@ -9,3 +9,6 @@ sensors:
 
 temphum:
 	python ./TempHum.py
+
+aqs:
+	python ./AQsensor.py
