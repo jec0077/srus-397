@@ -2,7 +2,6 @@ import cv2
 import sys
 from picamera2 import Picamera2
 # import adafruit_ads1x15
-
 # import AQsensor
 
 # Check if the user provided the Haar cascade file path

@@ -107,7 +107,7 @@ SAMPLE_RATE = 1  # Readings per second
 WARM_UP_TIME = 12  # Seconds
 VCC = 3.3  # Reference voltage (3.3V)
 RL = 20000  # Load resistance (20k ohms)
-R0 = 1.5  # Initial placeholder, will be calibrated
+R0 = 2.5  # Initial placeholder, will be calibrated
 GAS_RATIO_CLEAN_AIR = 1  # Assumed Rs/R0 in clean air
 
 # Gas calibration constants (these need to be updated based on sensor calibration or datasheet)
