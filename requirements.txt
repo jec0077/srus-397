@@ -6,3 +6,5 @@ datetime
 adafruit-circuitpython-am2320
 adafruit-circuitpython-busdevice
 adafruit-ads1x15
+adafruit-blinka
+adafruit-platformdetect

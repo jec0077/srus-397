@@ -19,3 +19,8 @@ If You Want to Commit Any Changes to the Main Branch
     `git add .`
     `git commit -m "<message>"`
     `git push -u origin main`
+
+
+<T>45
+<H>98
+<C>10
