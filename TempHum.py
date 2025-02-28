@@ -15,7 +15,7 @@ print(f"Detected I2C devices: {devices}")
 i2c.unlock()
 
 # Manually wake up the sensor: Some sensors need extra time
-time.sleep(1)  # Give the sensor a full second to wake up
+time.sleep(5)  # Give the sensor a full second to wake up
 
 try:
     sensor = adafruit_am2320.AM2320(i2c)
@@ -35,8 +35,9 @@ while True:
     try:
         temp_c = sensor.temperature  # Read temperature (�C)
         temp_f = (temp_c * 9 / 5) + 32  # Convert to �F
+        time.sleep(4)
         humidity = sensor.relative_humidity  # Read humidity
-
+        time.sleep(4)
         print(f"Temperature: {temp_c:.2f}�C / {temp_f:.2f}�F")
         print(f"Humidity: {humidity:.2f}%")
 
@@ -45,6 +46,6 @@ while True:
     except Exception as e:
         print(f"Error reading sensor data: {e}")
 
-    time.sleep(2)  # Wait 2 seconds before next reading
+#    time.sleep(3)  # Wait 2 seconds before next reading
 
 
