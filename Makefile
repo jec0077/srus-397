@@ -1,5 +1,5 @@
 run:
-	python ./main.py ./haarcascade_frontalface_default.xml 2
+	python ./main.py ./haarcascade_frontalface_default.xml 2 67 50
 
 data:
 	python ./data.py

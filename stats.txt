@@ -1,9 +1,5 @@
 Room Condition Data
 Filename: stats.txt
-<<<<<<< HEAD
 Collected: 2025-02-12 14:05:29
-=======
-Collected: 2025-02-22 01:44:24
->>>>>>> eda7412838e9190fd285d5968d4298c3ae78bcc8
 . . . .
 
