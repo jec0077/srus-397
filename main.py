@@ -103,10 +103,10 @@ while True:
         curr_max_in_rm[0] = num_of_persons
     if (num_of_persons > curr_max_in_rm[1]):
         MyRoom.rm_cap_met("stats.txt", num_of_persons)
-        curr_max_in_rm[1] = None
+        curr_max_in_rm[1] = 0
     if (num_of_persons > curr_max_in_rm[2]):
         MyRoom.rm_cap_met("stats.txt", num_of_persons)
-        curr_max_in_rm[2] = None
+        curr_max_in_rm[2] = 0
     # TODO: Configure Data module for num_of_persons
     
     cv2.imshow('Video', frame)
