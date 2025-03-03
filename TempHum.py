@@ -15,7 +15,7 @@ print(f"Detected I2C devices: {devices}")
 i2c.unlock()
 
 # Manually wake up the sensor: Some sensors need extra time
-time.sleep(5)  # Give the sensor a full second to wake up
+time.sleep(5)  # Give the sensor a full 5 seconds to wake up
 
 try:
     sensor = adafruit_am2320.AM2320(i2c)
@@ -28,7 +28,7 @@ except Exception as e:
     exit()
 
 # Manually wake up the sensor: Some sensors need extra time
-time.sleep(5)  # Give the sensor a full second to wake up
+time.sleep(5)  # Give the sensor a full 5 seconds to wake up
 
 # Read sensor data in loop
 while True:
@@ -46,6 +46,6 @@ while True:
     except Exception as e:
         print(f"Error reading sensor data: {e}")
 
-#    time.sleep(3)  # Wait 2 seconds before next reading
+#    time.sleep(5)  # Wait 5 seconds before next reading
 
 
