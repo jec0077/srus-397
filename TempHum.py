@@ -46,6 +46,6 @@ while True:
     except Exception as e:
         print(f"Error reading sensor data: {e}")
 
-#    time.sleep(3)  # Wait 2 seconds before next reading
+    time.sleep(3)  # Wait 2 seconds before next reading
 
 

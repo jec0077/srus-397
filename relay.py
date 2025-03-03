@@ -8,7 +8,7 @@ FAN_HIGH_RELAY_PIN = 22 # IN3
 FAN_LOW_RELAY_PIN = 23 # IN4
 
 # Set GPIO mode
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM) 
 
 # Setup GPIO pins as outputs
 GPIO.setup(AC_RELAY_PIN, GPIO.OUT)
