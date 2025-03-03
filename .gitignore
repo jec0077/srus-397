@@ -170,7 +170,8 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-# Images and Videos
+# Images and Videos and Vscode folder
+.vscode/
 *.jpeg
 *.png
 *.jpg
