@@ -111,7 +111,7 @@ class RoomInfo:
         """
         threshold = 2.0  # Allow 2°F tolerance
 
-        if abs(temp_var - self.room_temp) > threshold:
+        if abs(temp_var - self.room_temp) < threshold:
             now_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(filename, "a") as _file:
                 _file.write(f"{now_time}\tRoom temperature out of range ({temp_var:.2f}°F)\n")
@@ -131,7 +131,7 @@ class RoomInfo:
         """
         threshold = 5.0  # Allow 5% tolerance
 
-        if abs(hum_var - self.room_hum) > threshold:
+        if abs(hum_var - self.room_hum) < threshold:
             now_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(filename, "a") as _file:
                 _file.write(f"{now_time}\tRoom humidity out of range ({hum_var:.2f}%)\n")
