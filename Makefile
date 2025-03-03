@@ -12,3 +12,6 @@ temphum:
 
 aqs:
 	python ./AQsensor.py
+
+testingcode:
+	python ./TestingCode.py
