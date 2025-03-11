@@ -1,4 +1,7 @@
 run:
+	python ./yolo_alt.py 2 67 50
+
+old:
 	python ./main.py ./haarcascade_frontalface_default.xml 2 67 50
 
 data:
