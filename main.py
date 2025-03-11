@@ -60,7 +60,6 @@ while True:
 
     # Display the resulting frame
     cv2.putText(frame, f'Total Persons Detected: {num_of_persons} / {rm_cap}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
-<<<<<<< HEAD
    
     if (num_of_persons > curr_max_in_rm[0]):
         MyRoom.rm_cap_met("stats.txt", num_of_persons)
@@ -72,10 +71,6 @@ while True:
         MyRoom.rm_cap_met("stats.txt", num_of_persons)
         curr_max_in_rm[2] = 0
     # TODO: Configure Data module for num_of_persons
-=======
-    # cv2.putText(frame, f'CO2: {}', (70, 40), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
-    # AQsensor.main()
->>>>>>> eda7412838e9190fd285d5968d4298c3ae78bcc8
     
     if num_of_persons > curr_max_in_rm[0]:
         # MyRoom.rm_cap_met("stats.txt", num_of_persons) # add your room logic here.

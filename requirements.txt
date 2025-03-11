@@ -8,3 +8,4 @@ adafruit-circuitpython-busdevice
 adafruit-ads1x15
 adafruit-blinka
 adafruit-platformdetect
+picamera2

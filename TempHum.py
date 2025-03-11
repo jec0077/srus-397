@@ -46,10 +46,6 @@ while True:
     except Exception as e:
         print(f"Error reading sensor data: {e}")
 
-<<<<<<< HEAD
     time.sleep(3)  # Wait 2 seconds before next reading
-=======
-#    time.sleep(5)  # Wait 5 seconds before next reading
->>>>>>> 627710963405a31ebc19ff11ae2f1745efd1960b
 
 
