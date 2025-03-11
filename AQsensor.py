@@ -131,7 +131,7 @@ GAS_CALIBRATION = {
 
 # Initialize I2C
 i2c = busio.I2C(board.SCL, board.SDA)
-ads = ADS.ADS1015(i2c)
+ads = ADS.ADS1015(i2c,address=0x48 )
 channel = AnalogIn(ads, ADS.P0)
 
 def calculate_rs_r0(voltage):
