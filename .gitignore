@@ -178,3 +178,5 @@ cython_debug/
 *.avi
 
 TestingCode.py
+room_data.txt
+room.txt

@@ -186,7 +186,7 @@ def main():
             rs_r0 = calculate_rs_r0(voltage)
 
             # Calculate PPM for all gases
-            co2_ppm = calculate_ppm(rs_r0, gas_type='CO2')
+            co2_ppm = calculate_ppm(rs_r0, gas_type='CO2') * 15
             nh3_ppm = calculate_ppm(rs_r0, gas_type='NH3')
             nox_ppm = calculate_ppm(rs_r0, gas_type='NOx')
             alcohol_ppm = calculate_ppm(rs_r0, gas_type='Alcohol')

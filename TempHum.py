@@ -3,6 +3,12 @@ import board
 import busio
 import adafruit_am2320
 
+import data
+
+data.create_data_file("room.txt")
+MyRoom = data.RoomInfo(temperature=75.40, humidity=15.00)
+data.ping_message_to_file("room.txt", "Testing TempHum.py")
+
 # Initialize I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
 
@@ -40,6 +46,8 @@ while True:
         time.sleep(4)
         print(f"Temperature: {temp_c:.2f}�C / {temp_f:.2f}�F")
         print(f"Humidity: {humidity:.2f}%")
+        MyRoom.temp_cond_met("room.txt", temp_f)
+        MyRoom.hum_cond_met("room.txt", humidity)
 
     except OSError as e:
         print(f"Error reading sensor data (OSError): {e}")

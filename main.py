@@ -1,6 +1,7 @@
 import cv2
 import sys
 from picamera2 import Picamera2
+import data
 # import adafruit_ads1x15
 # import AQsensor
 
@@ -12,6 +13,10 @@ if len(sys.argv) < 2:
 filename = "stats.txt"
 cascPath = sys.argv[1]
 rm_cap = int(sys.argv[2])
+rm_temp = int(sys.argv[3])
+rm_hum = int(sys.argv[4])
+MyRoom = data.RoomInfo(rm_cap, rm_temp, rm_hum)
+
 
 # Load the Haar cascade file
 faceCascade = cv2.CascadeClassifier(cascPath)
