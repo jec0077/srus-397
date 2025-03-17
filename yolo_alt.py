@@ -1,7 +1,5 @@
 import sys
 import cv2
-import numpy as np
-import time
 from ultralytics import YOLO
 from picamera2 import Picamera2
 import data
@@ -30,23 +28,16 @@ picam2.start()
 
 print("[INFO] Camera started... Press 'q' to exit.")
 
-# Frame skipping to improve speed
-# frame_skip = 180  # Skips every second frame to improve performance
-# frame_count = 0
-
 try:
     while True:
-        # start_time = time.time()  # Track time for FPS calculation
-
         # Capture frame
         frame = picam2.capture_array()
 
         # Ensure correct color representation
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)  
 
-
         # Run YOLO detection (efficient mode)
-        results = model(frame, stream=True)
+        results = model(frame, verbose=False)  # Disable verbose output
 
         for r in results:
             # Filter for 'person' class (0) with confidence >= 0.7
@@ -66,16 +57,9 @@ try:
         # Show frame in OpenCV window
         cv2.imshow("Person Detection - Picamera2", frame)
 
-        # FPS Calculation
-        # fps = 1 / (time.time() - start_time)
-        # print(f"FPS: {fps:.2f}")
-
         # Exit when 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
-
-        # frame_count += 1  # Increment frame counter
-
 except KeyboardInterrupt:
     print("\n[INFO] Stopping camera...")
 
