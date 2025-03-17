@@ -1,58 +1,86 @@
 import sys
 import cv2
 import numpy as np
+import time
 from ultralytics import YOLO
 from picamera2 import Picamera2
 import data
 
+# Ensure correct usage
 if len(sys.argv) < 4:
-    print("Usage: python script.py <room_capacity> <room temperature> <room humidity>")
+    print("Usage: python script.py <room_capacity> <room_temperature> <room_humidity>")
     sys.exit(1)
 
-filename = "stats.txt"
+# Read input arguments
 rm_cap = int(sys.argv[1])
 rm_temp = int(sys.argv[2])
 rm_hum = int(sys.argv[3])
 MyRoom = data.RoomInfo(rm_cap, rm_temp, rm_hum)
 
-# Load YOLOv8 model
+# Load YOLOv8 model (Nano version for efficiency)
 model = YOLO("yolov8n.pt")
 
-# Initialize Picamera2
+# Initialize Picamera2 with optimized settings
 picam2 = Picamera2()
-
-# Set the camera configuration for preview
-camera_config = picam2.create_preview_configuration(main={"size": (640, 480), "format": "RGB888"})
+camera_config = picam2.create_video_configuration(
+    main={"size": (1280, 720), "format": "RGB888"}  # Higher FPS for smoother video
+)
 picam2.configure(camera_config)
 picam2.start()
 
-while True:
-    # Capture the frame from the camera
-    frame = picam2.capture_array()
+print("[INFO] Camera started... Press 'q' to exit.")
 
-    # Convert from RGB to BGR (OpenCV uses BGR format)
-    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+# Frame skipping to improve speed
+# frame_skip = 180  # Skips every second frame to improve performance
+# frame_count = 0
 
-    # Run YOLO detection
-    results = model(frame)
+try:
+    while True:
+        # start_time = time.time()  # Track time for FPS calculation
 
-    for r in results:
-        # Filter only persons (class 0) with confidence >= 0.7
-        person_detections = r.boxes[(r.boxes.cls == 0) & (r.boxes.conf >= 0.7)]
-        r.boxes = person_detections
-        frame = r.plot()  # Draw filtered boxes
+        # Capture frame
+        frame = picam2.capture_array()
 
-        # Display total persons detected
-        cv2.putText(frame, f'Total Persons Detected: {len(r.boxes)} / {rm_cap}', 
-                    (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+        # Ensure correct color representation
+        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)  
 
-    # Show the frame with detections
-    cv2.imshow("Person Detection (Confidence >= 0.7)", frame)
 
-    # Exit the loop when 'q' key is pressed
-    if cv2.waitKey(1) & 0xFF == ord("q"):
-        break
+        # Run YOLO detection (efficient mode)
+        results = model(frame, stream=True)
 
-# Cleanup and release resources
-cv2.destroyAllWindows()
-picam2.stop()
+        for r in results:
+            # Filter for 'person' class (0) with confidence >= 0.7
+            person_detections = r.boxes[r.boxes.cls == 0]
+            person_detections = person_detections[person_detections.conf >= 0.7]
+
+            # Update the detections
+            r.boxes = person_detections
+
+            # Use YOLO's built-in `.plot()` method for optimized drawing
+            frame = r.plot()
+
+            # Display total person count
+            cv2.putText(frame, f'Total Persons: {len(r.boxes)} / {rm_cap}', 
+                        (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+
+        # Show frame in OpenCV window
+        cv2.imshow("Person Detection - Picamera2", frame)
+
+        # FPS Calculation
+        # fps = 1 / (time.time() - start_time)
+        # print(f"FPS: {fps:.2f}")
+
+        # Exit when 'q' is pressed
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+
+        # frame_count += 1  # Increment frame counter
+
+except KeyboardInterrupt:
+    print("\n[INFO] Stopping camera...")
+
+finally:
+    # Cleanup
+    cv2.destroyAllWindows()
+    picam2.stop()
+    print("[INFO] Camera stopped.")
