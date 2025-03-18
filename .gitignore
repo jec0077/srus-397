@@ -183,3 +183,5 @@ cython_debug/
 TestingCode.py
 room_data.txt
 room.txt
+
+.vscode/

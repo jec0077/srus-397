@@ -13,8 +13,8 @@ test-aqs:
 test-relay:
 	python ./relay.py
 
-test-delay:
-	python ./delay.py
+test-display:
+	python ./display.py
 
 run:
 	python ./main.py 2 67 50

@@ -8,7 +8,7 @@ import data
 import relay
 import TempHum
 import AQsensor
-import delay
+import display
 
 def main():
     # Read input arguments
