@@ -1,5 +1,0 @@
-Room Condition Data
-Filename: stats.txt
-Collected: 2025-02-12 14:05:29
-. . . .
-

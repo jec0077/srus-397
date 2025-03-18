@@ -6,10 +6,6 @@ import board
 import busio
 import random
 
-# Create I2C bus
-# i2c = busio.I2C(board.SCL, board.SDA)
-# sensor = adafruit_am2320.AM2320(i2c)
-
 # Function to get sensor data
 def get_sensor_data():
     try:
