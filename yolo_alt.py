@@ -21,7 +21,8 @@ model = YOLO("yolov8n.pt")
 # Initialize Picamera2 with optimized settings
 picam2 = Picamera2()
 camera_config = picam2.create_video_configuration(
-    main={"size": (1280, 720), "format": "RGB888"}  # Higher FPS for smoother video
+    main={"size": (800, 480), "format": "RGB888"},
+    controls={"FrameRate": 30}  # Higher FPS for smoother video
 )
 picam2.configure(camera_config)
 picam2.start()
@@ -32,9 +33,6 @@ try:
     while True:
         # Capture frame
         frame = picam2.capture_array()
-
-        # Ensure correct color representation
-        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)  
 
         # Run YOLO detection (efficient mode)
         results = model(frame, verbose=False)  # Disable verbose output

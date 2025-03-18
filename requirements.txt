@@ -12,3 +12,5 @@ picamera2
 torch
 torchvision
 ultralytics
+smbus2
+tk
