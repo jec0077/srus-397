@@ -1,20 +1,20 @@
-run:
+test-yolo:
 	python ./yolo_alt.py 2 67 50
 
-old:
-	python ./main.py ./haarcascade_frontalface_default.xml 2 67 50
-
-data:
+test-data:
 	python ./data.py
 
-sensors:
-	python ./sensors.py
-
-temphum:
+test-temphum:
 	python ./TempHum.py
 
-aqs:
+test-aqs:
 	python ./AQsensor.py
 
-testingcode:
-	python ./TestingCode.py
+test-relay:
+	python ./relay.py
+
+test-display:
+	python ./display.py
+
+run:
+	python ./main.py 2 67 50
