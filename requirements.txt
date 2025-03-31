@@ -14,3 +14,4 @@ torchvision
 ultralytics
 smbus2
 tk
+matplotlib

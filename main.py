@@ -1,5 +1,6 @@
 import sys
 import cv2
+import libcamera
 from ultralytics import YOLO
 from picamera2 import Picamera2
 

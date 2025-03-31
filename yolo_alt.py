@@ -1,5 +1,6 @@
 import sys
 import cv2
+# import libcamera
 from ultralytics import YOLO
 from picamera2 import Picamera2
 import data
@@ -65,8 +66,4 @@ finally:
     # Cleanup
     cv2.destroyAllWindows()
     picam2.stop()
-<<<<<<< HEAD
     print("[INFO] Camera stopped.")
-=======
-    print("[INFO] Camera stopped.")
->>>>>>> 6a98f9f7201d405b511ea349e918cb6e79f91312
