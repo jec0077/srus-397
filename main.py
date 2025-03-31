@@ -1,6 +1,9 @@
+# intergrate yolo, temphum, relay
+# second prime aqs, display
+
 import sys
 import cv2
-import libcamera
+# import libcamera
 from ultralytics import YOLO
 from picamera2 import Picamera2
 
