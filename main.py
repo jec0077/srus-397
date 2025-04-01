@@ -13,12 +13,12 @@ import board
 import busio
 import adafruit_am2320
 
-import yolo_alt
+# import yolo_alt
 import data
 import relay
-import TempHum
-import AQsensor
-import display
+# import TempHum
+# import AQsensor
+# import display
 
 def main():
     # Read input arguments
@@ -31,42 +31,43 @@ def main():
     logic_break1 = 0
     logic_break2 = 0
     logic_break3 = 0
+    
+    # i2c = busio.I2C(board.SCL, board.SDA)
+
+    # print("Scanning I2C bus...")
+    # while not i2c.try_lock():
+    #     pass  # Wait for the I2C bus to be ready
+
+    # devices = i2c.scan()  # Scan devices to wake up AM2320
+    # print(f"Detected I2C devices: {devices}")
+    # i2c.unlock()
+    
+    # try:
+    #     sensor = adafruit_am2320.AM2320(i2c)
+    #     print("Sensor initialized!")
+    # except ValueError:
+    #     print("Error: AM2320 sensor not found on I2C bus.")
+    #     exit()
+    # except Exception as e:
+    #     print(f"Error initializing sensor: {e}")
+    #     exit()
+        
+    # time.sleep(5)
 
     # Load YOLOv8 model (Nano version for efficiency)
-    model = yolo_alt.YOLO("yolov8n.pt")
+    model = YOLO("yolov8n.pt")
 
     # Initialize Picamera2 with optimized settings
-    picam2 = yolo_alt.Picamera2()
+    picam2 = Picamera2()
     camera_config = picam2.create_video_configuration(
         main={"size": (800, 480), "format": "RGB888"},
         controls={"FrameRate": 30}  # Higher FPS for smoother video
     )
+
     picam2.configure(camera_config)
     picam2.start()
 
     print("[INFO] Camera started... Press 'q' to exit.")
-    
-    i2c = busio.I2C(board.SCL, board.SDA)
-
-    print("Scanning I2C bus...")
-    while not i2c.try_lock():
-        pass  # Wait for the I2C bus to be ready
-
-    devices = i2c.scan()  # Scan devices to wake up AM2320
-    print(f"Detected I2C devices: {devices}")
-    i2c.unlock()
-    
-    try:
-        sensor = adafruit_am2320.AM2320(i2c)
-        print("Sensor initialized!")
-    except ValueError:
-        print("Error: AM2320 sensor not found on I2C bus.")
-        exit()
-    except Exception as e:
-        print(f"Error initializing sensor: {e}")
-        exit()
-        
-    time.sleep(5)
 
     try:
         while True:
@@ -92,12 +93,15 @@ def main():
                             (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
                 
                 # Read sensor data in loop
-                temp_c = sensor.temperature  # Read temperature (oC)
-                temp_f = (temp_c * 9 / 5) + 32  # Convert to oF
-                humidity = sensor.relative_humidity  # Read humidity
+                # temp_c = sensor.temperature  # Read temperature (oC)
+                # temp_f = (temp_c * 9 / 5) + 32  # Convert to oF
+                # humidity = sensor.relative_humidity  # Read humidity
                 
-                print(f"Temperature: {temp_c:.2f}oC / {temp_f:.2f}oF")
-                print(f"Humidity: {humidity:.2f}%")
+                # cv2.putText(frame, f'Temperature: {temp_c:.2f}oC / {temp_f:.2f}oF', 
+                #             (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+
+                # cv2.putText(frame, f'Humidity: {humidity:.2f}%', 
+                #             (20, 0), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
                 
                 if MyRoom.rm_cap_met("room.txt", len(r.boxes)) == True and logic_break1 == 0:
                     relay.turn_on_ac()

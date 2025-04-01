@@ -55,36 +55,40 @@ def turn_off_fan():
     print("FAN OFF")
 
 # Example usage (replace with your temperature control logic)
-try:
-    # Initialize all relays to off
-    turn_off_ac()
-    turn_off_heat()
-    turn_off_fan()
+def main():
+    try:
+        # Initialize all relays to off
+        turn_off_ac()
+        turn_off_heat()
+        turn_off_fan()
 
-    # Example: Turn on AC for 5 seconds, then turn on heat for 5 seconds
-    turn_on_ac()
-    time.sleep(5)
-    turn_off_ac()
+        # Example: Turn on AC for 5 seconds, then turn on heat for 5 seconds
+        turn_on_ac()
+        time.sleep(5)
+        turn_off_ac()
 
-    turn_on_heat()
-    time.sleep(5)
-    turn_off_heat()
+        turn_on_heat()
+        time.sleep(5)
+        turn_off_heat()
 
-    turn_on_fan_high()
-    time.sleep(5)
-    turn_off_fan()
+        turn_on_fan_high()
+        time.sleep(5)
+        turn_off_fan()
 
-    turn_on_fan_low()
-    time.sleep(5)
-    turn_off_fan()
+        turn_on_fan_low()
+        time.sleep(5)
+        turn_off_fan()
 
-except KeyboardInterrupt:
-    print("Program stopped by user")
+    except KeyboardInterrupt:
+        print("Program stopped by user")
 
-finally:
-    # Clean up GPIO settings
-    turn_off_ac()
-    turn_off_heat()
-    turn_off_fan()
-    GPIO.cleanup()
-    print("GPIO cleaned up")
+    finally:
+        # Clean up GPIO settings
+        turn_off_ac()
+        turn_off_heat()
+        turn_off_fan()
+        GPIO.cleanup()
+        print("GPIO cleaned up")
+
+if __name__ == "__main__":
+    main()
