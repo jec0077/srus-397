@@ -16,8 +16,5 @@ test-relay:
 test-display:
 	python ./display.py
 
-test-intsys:
-	python ./intergrated_system.py
-
 run:
 	python ./main.py 2 67 50
