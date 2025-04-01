@@ -1,5 +1,4 @@
-# integrate yolo, temphum, relay
-# second prime aqs, display
+# TODO: Header
 
 import sys
 import cv2
@@ -13,46 +12,46 @@ import board
 import busio
 import adafruit_am2320
 
-# import yolo_alt
 import data
 import relay
 # import TempHum
 # import AQsensor
 # import display
+# import yolo_alt
+
+# Read input arguments
+rm_cap = int(sys.argv[1])
+rm_temp = float(sys.argv[2])
+rm_hum = float(sys.argv[3])
+MyRoom = data.RoomInfo(rm_cap, rm_temp, rm_hum)
+data.create_data_file("room.txt")
 
 def main():
-    # Read input arguments
-    rm_cap = int(sys.argv[1])
-    rm_temp = float(sys.argv[2])
-    rm_hum = float(sys.argv[3])
-    MyRoom = data.RoomInfo(rm_cap, rm_temp, rm_hum)
-    data.create_data_file("room.txt")
-    
     logic_break1 = 0
     logic_break2 = 0
     logic_break3 = 0
     
-    # i2c = busio.I2C(board.SCL, board.SDA)
+    i2c = busio.I2C(board.SCL, board.SDA)
 
-    # print("Scanning I2C bus...")
-    # while not i2c.try_lock():
-    #     pass  # Wait for the I2C bus to be ready
+    print("Scanning I2C bus...")
+    while not i2c.try_lock():
+        pass  # Wait for the I2C bus to be ready
 
-    # devices = i2c.scan()  # Scan devices to wake up AM2320
-    # print(f"Detected I2C devices: {devices}")
-    # i2c.unlock()
+    devices = i2c.scan()  # Scan devices to wake up AM2320
+    print(f"Detected I2C devices: {devices}")
+    i2c.unlock()
     
-    # try:
-    #     sensor = adafruit_am2320.AM2320(i2c)
-    #     print("Sensor initialized!")
-    # except ValueError:
-    #     print("Error: AM2320 sensor not found on I2C bus.")
-    #     exit()
-    # except Exception as e:
-    #     print(f"Error initializing sensor: {e}")
-    #     exit()
+    try:
+        sensor = adafruit_am2320.AM2320(i2c)
+        print("Sensor initialized!")
+    except ValueError:
+        print("Error: AM2320 sensor not found on I2C bus.")
+        exit()
+    except Exception as e:
+        print(f"Error initializing sensor: {e}")
+        exit()
         
-    # time.sleep(5)
+    time.sleep(5)
 
     # Load YOLOv8 model (Nano version for efficiency)
     model = YOLO("yolov8n.pt")
@@ -69,10 +68,24 @@ def main():
 
     print("[INFO] Camera started... Press 'q' to exit.")
 
+    last_sensor_read = time.time()
+    temp_c, temp_f, humidity = None, None, None  # Initialize variables
+
     try:
         while True:
             # Capture frame
             frame = picam2.capture_array()
+
+            # Read sensor data every 1 second
+            if time.time() - last_sensor_read > 1:
+                try:
+                    temp_c = sensor.temperature  # Read temperature (°C)
+                    temp_f = (temp_c * 9 / 5) + 32  # Convert to °F
+                    humidity = sensor.relative_humidity  # Read humidity
+                    last_sensor_read = time.time()  # Update last read time
+                except Exception as e:
+                    print(f"[WARNING] AM2320 read error: {e}")
+                    temp_c, temp_f, humidity = None, None, None  # Prevent crash
 
             # Run YOLO detection (efficient mode)
             results = model(frame, verbose=False)  # Disable verbose output
@@ -91,31 +104,13 @@ def main():
                 # Display total person count
                 cv2.putText(frame, f'Total Persons: {len(r.boxes)} / {rm_cap}', 
                             (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
-                
-                # Read sensor data in loop
-                # temp_c = sensor.temperature  # Read temperature (oC)
-                # temp_f = (temp_c * 9 / 5) + 32  # Convert to oF
-                # humidity = sensor.relative_humidity  # Read humidity
-                
-                # cv2.putText(frame, f'Temperature: {temp_c:.2f}oC / {temp_f:.2f}oF', 
-                #             (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
 
-                # cv2.putText(frame, f'Humidity: {humidity:.2f}%', 
-                #             (20, 0), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
-                
-                if MyRoom.rm_cap_met("room.txt", len(r.boxes)) == True and logic_break1 == 0:
-                    relay.turn_on_ac()
-                    logic_break1 = 1
-                elif logic_break1 == 1 and len(r.boxes) < rm_cap:
-                    relay.turn_off_ac()
-                    logic_break1 = 0
-                    
-                if MyRoom.hum_cond_met("room.txt", rm_hum) == True and logic_break2 == 0:
-                    pass
-                
-                if MyRoom.temp_cond_met("room.txt", rm_temp) == True and logic_break3 == 0:
-                    pass
-                
+                # Display sensor data (only update if successful read)
+                if temp_c is not None and humidity is not None:
+                    cv2.putText(frame, f'Temperature: {temp_c:.2f}oC | {temp_f:.2f}oF', 
+                                (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+                    cv2.putText(frame, f'Humidity: {humidity:.2f}%', 
+                                (20, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
 
             # Show frame in OpenCV window
             cv2.imshow("Person Detection - Picamera2", frame)
@@ -123,7 +118,7 @@ def main():
             # Exit when 'q' is pressed
             if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
-    
+
     except KeyboardInterrupt:
         print("\n[INFO] Stopping camera...")
 

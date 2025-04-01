@@ -34,16 +34,21 @@ def main():
         print(f"Error initializing sensor: {e}")
         exit()
 
+    # Manually wake up the sensor: Some sensors need extra time
+    time.sleep(4)  # Give the sensor a full 4 seconds to wake up
+
     # Read sensor data in loop
     while True:
         try:
             temp_c = sensor.temperature  # Read temperature (oC)
             temp_f = (temp_c * 9 / 5) + 32  # Convert to oF
+            time.sleep(4)
             humidity = sensor.relative_humidity  # Read humidity
+            time.sleep(4)
             print(f"Temperature: {temp_c:.2f}oC / {temp_f:.2f}oF")
             print(f"Humidity: {humidity:.2f}%")
-            main.MyRoom.temp_cond_met("room.txt", temp_f)
-            main.MyRoom.hum_cond_met("room.txt", humidity)
+            # MyRoom.temp_cond_met("room.txt", temp_f)
+            # MyRoom.hum_cond_met("room.txt", humidity)
 
         except OSError as e:
             print(f"Error reading sensor data (OSError): {e}")
