@@ -28,14 +28,16 @@ def main():
         sensor = adafruit_am2320.AM2320(i2c)
         print("Sensor initialized!")
     except ValueError:
-        print("Error: AM2320 sensor not found on I2C bus.")
-        exit()
+        print("AM2320 sensor not found on I2C bus. Please wait.")
+        # exit()
+        time.sleep(4)
     except Exception as e:
-        print(f"Error initializing sensor: {e}")
-        exit()
+        print(f"Re-initializing sensor: {e}")
+        # exit()
+        time.sleep(4)
 
     # Manually wake up the sensor: Some sensors need extra time
-    time.sleep(4)  # Give the sensor a full 4 seconds to wake up
+    # time.sleep(4)  # Give the sensor a full 4 seconds to wake up
 
     # Read sensor data in loop
     while True:
@@ -51,7 +53,7 @@ def main():
             # MyRoom.hum_cond_met("room.txt", humidity)
 
         except OSError as e:
-            print(f"Error reading sensor data (OSError): {e}")
+            print(f"OSError reading sensor data: {e}")
         except Exception as e:
             print(f"Error reading sensor data: {e}")
 

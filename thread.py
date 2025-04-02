@@ -1,13 +1,13 @@
 from threading import Thread
-# from app_a import main as main_a
-# from app_b import main as main_b
 
-# now run them both in parallel:
-# thread_a = Thread(target=main_a)
-# thread_b = Thread(target=main_b)
+from camera import main as camera_main
+from sensors import main as sensors_main
 
-# thread_a.start()
-# thread_b.start()
+thread_cam = Thread(target=camera_main)
+thread_sens = Thread(target=sensors_main)
 
-# thread_a.join()
-# thread_b.join()
+thread_cam.start()
+thread_sens.start()
+
+thread_cam.join()
+thread_sens.join()
