@@ -24,8 +24,9 @@ rm_cap = 2
 rm_temp = 67.00
 rm_hum = 50.00
 
-MyRoom = data.RoomInfo(rm_cap, rm_temp, rm_hum)
+MyRoom = data.RoomInfo("jcampb36@uic.edu", rm_cap, rm_temp, rm_hum)
 data.create_data_file("room.txt")
+MyData = MyRoom.get_room_data()
 
 def main():
     logic_break1 = 0

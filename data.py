@@ -80,9 +80,12 @@ class RoomInfo:
         """Returns a string representation of the room details."""
         return (f"Room Owner: {self.room_owner}\n"
                 f"Preferred Capacity: {self.room_cap}\n"
-                f"Preferred Temperature: {self.room_temp}°F\n"
+                f"Preferred Temperature: {self.room_temp}oF\n"
                 f"Preferred Humidity: {self.room_hum}%")
 
+    def get_room_data(self) -> list:
+        return [self.room_cap, self.room_temp, self.room_hum]
+    
     def rm_cap_met(self, filename: str, cap_var: int) -> bool:
         """
         Checks if the room is over capacity and logs it if necessary.
