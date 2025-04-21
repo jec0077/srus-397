@@ -20,7 +20,7 @@ import relay
 # rm_temp = float(sys.argv[2])
 # rm_hum = float(sys.argv[3])
 
-rm_cap = 2
+rm_cap = 20
 rm_temp = 67.00
 rm_hum = 50.00
 
