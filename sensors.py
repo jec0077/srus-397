@@ -8,7 +8,7 @@ import data
 def main():
     data.create_data_file("room.txt")
     MyRoom = data.RoomInfo(temperature=75.40, humidity=15.00)
-    data.ping_message_to_file("room.txt", "Testing TempHum.py")
+    data.ping_message_to_file("room.txt", "Sensor systems are running")
 
     # Initialize I2C bus
     i2c = busio.I2C(board.SCL, board.SDA)
@@ -47,8 +47,11 @@ def main():
             time.sleep(4)
             humidity = sensor.relative_humidity  # Read humidity
             time.sleep(4)
+
             print(f"Temperature: {temp_c:.2f}oC / {temp_f:.2f}oF")
             print(f"Humidity: {humidity:.2f}%")
+
+            data.ping_message_to_file("room.txt", f"\n\tTemperature: {temp_c:.2f}oC / {temp_f:.2f}oF\n\tHumidity: {humidity:.2f}%")
             # MyRoom.temp_cond_met("room.txt", temp_f)
             # MyRoom.hum_cond_met("room.txt", humidity)
 

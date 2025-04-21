@@ -20,7 +20,7 @@ import relay
 # rm_temp = float(sys.argv[2])
 # rm_hum = float(sys.argv[3])
 
-rm_cap = 20
+rm_cap = 2
 rm_temp = 67.00
 rm_hum = 50.00
 
@@ -30,8 +30,6 @@ MyData = MyRoom.get_room_data()
 
 def main():
     logic_break1 = 0
-    logic_break2 = 0
-    logic_break3 = 0
 
     # Load YOLOv8 model (Nano version for efficiency)
     model = YOLO("yolov8n.pt")
@@ -73,6 +71,14 @@ def main():
                 # Display total person count
                 cv2.putText(frame, f'Total Persons: {len(r.boxes)} / {rm_cap}', 
                             (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+
+                if len(r.boxes) > rm_cap and logic_break1 == 0:
+                    data.ping_message_to_file("room.txt", f"\n\tRoom over capacity: {len(r.boxes)} out of {rm_cap} occupants")
+                    logic_break1 = 1   
+                elif len(r.boxes) == rm_cap:
+                    time.sleep(0.1)
+                else:
+                    logic_break1 = 0
 
             # Show frame in OpenCV window
             cv2.imshow("Person Detection - Picamera2", frame)
