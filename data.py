@@ -23,6 +23,7 @@ Example:
 # Import dependent libraries
 import datetime
 import time
+import relay
 
 def create_data_file(filename: str) -> bool:
     """Creates a data file and writes initial room condition data."""
@@ -101,7 +102,9 @@ class RoomInfo:
                 _file.write("\t! Contacting Room Owner\n")
                 _file.write(". . . .\n")
             time.sleep(0.1)
+            relay.turn_off_heat()
             return True
+        relay.turn_on_heat()
         return False
 
     def temp_cond_met(self, filename: str, temp_var: float) -> bool:
@@ -121,7 +124,9 @@ class RoomInfo:
                 _file.write("\t! Contacting Room Owner\n")
                 _file.write(". . . .\n")
             time.sleep(0.1)
+            relay.turn_on_ac()
             return True
+        relay.turn_off_ac()
         return False
 
     def hum_cond_met(self, filename: str, hum_var: float) -> bool:
@@ -141,7 +146,9 @@ class RoomInfo:
                 _file.write("\t! Contacting Room Owner\n")
                 _file.write(". . . .\n")
             time.sleep(0.1)
+            relay.turn_on_fan_high()
             return True
+        relay.turn_off_heat()
         return False
     
     def change_room_instance(self, owner: str = None, capacity: int = None, temperature: float = None, humidity: float = None):
