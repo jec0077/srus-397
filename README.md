@@ -10,3 +10,4 @@ University of Illinois-Chicago (UIC)
 College of Engineering (COE)
 Department of Electrical and Computer Engineering (ECE)
 Team Engin33ring Knights (ECE.33)
+Academic Year 2024-2025
