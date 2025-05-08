@@ -1,6 +1,6 @@
-# Smart Room Utility System (SRUS)
+# Smart Room Utilization System (SRUS)
 
-The Smart Room Utility System (SRUS) is an embedded, Raspberry Pi–based project designed to monitor and control environmental conditions within a room using real-time sensor data and computer vision. The system integrates temperature and humidity sensors (AM2320), GPIO-controlled relays, and a Raspberry Pi camera running a YOLOv8 object detection model to automate utility decisions like activating air conditioning, heating, and ventilation based on occupancy and climate conditions.
+The Smart Room Utilization System (SRUS) is an embedded, Raspberry Pi–based project designed to monitor and control environmental conditions within a room using real-time sensor data and computer vision. The system integrates temperature and humidity sensors (AM2320), GPIO-controlled relays, and a Raspberry Pi camera running a YOLOv8 object detection model to automate utility decisions like activating air conditioning, heating, and ventilation based on occupancy and climate conditions.
 
 The software architecture is modular, split into separate Python files for sensor interaction (sensors.py), relay control (relay.py), computer vision (camera.py), and data logging (data.py). A threading system (thread.py) ensures that the sensor and camera modules operate concurrently, allowing real-time monitoring and response without delay or conflict. Sensor readings are recorded and evaluated against user-defined thresholds, triggering appropriate actions such as turning on the fan if humidity rises or activating the AC if the temperature exceeds a certain level. Simultaneously, the computer vision system counts the number of people in the room to track occupancy and prevent overcapacity.
 
