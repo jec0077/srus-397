@@ -1,11 +1,12 @@
-# Smart Room Utilization System (SRUS)
+# Smart Room Utility System (SRUS)
 
-Traditional room management systems often depend on users manually inputting data or using ineffective motion sensors, which results in inefficient energy consumption, suboptimal space allocation, waste of building resources, and overall poor building management. This issue is pronounced in dynamic environments like corporate offices, conference centers, and educational institutions, where room usage patterns vary significantly and unpredictably. These inefficiencies hinder user experience in dynamic spaces and pronounce the need for a more responsive and immediate solution that can adapt to real-time conditions and optimize facility performance. The goal of this project is to do two things: (1) optimize space utilization and maximize the efficiency of room usage by accurately monitoring occupancy patterns and adjusting allocations dynamically, and (2) provide real-time insights: track the conditions of the room and deliver actionable analytics and reports to facility managers for informed decision-making and strategic planning.
+The Smart Room Utility System (SRUS) is an embedded, Raspberry Pi–based project designed to monitor and control environmental conditions within a room using real-time sensor data and computer vision. The system integrates temperature and humidity sensors (AM2320), GPIO-controlled relays, and a Raspberry Pi camera running a YOLOv8 object detection model to automate utility decisions like activating air conditioning, heating, and ventilation based on occupancy and climate conditions.
 
----
+The software architecture is modular, split into separate Python files for sensor interaction (sensors.py), relay control (relay.py), computer vision (camera.py), and data logging (data.py). A threading system (thread.py) ensures that the sensor and camera modules operate concurrently, allowing real-time monitoring and response without delay or conflict. Sensor readings are recorded and evaluated against user-defined thresholds, triggering appropriate actions such as turning on the fan if humidity rises or activating the AC if the temperature exceeds a certain level. Simultaneously, the computer vision system counts the number of people in the room to track occupancy and prevent overcapacity.
 
-UNIVERSITY OF ILLINOIS-CHICAGO | ECE 397 SPRING 2025
+The project emphasizes real-time system coordination, energy efficiency, and embedded software design. Through modular coding, team collaboration, and performance testing, SRUS showcases how low-cost computing platforms can support intelligent, automated environmental control solutions suitable for smart buildings and classrooms.
 
-TEAM 33 | ENGIN33RING KNIGHTS
-
-Aaron T, Joshua C, Shishir P, Toan N
+University of Illinois-Chicago (UIC)
+College of Engineering (COE)
+Department of Electrical and Computer Engineering (ECE)
+Team Engin33ring Knights (ECE.33)
